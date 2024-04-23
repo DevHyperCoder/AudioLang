@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <template class="ChooseDirPage" parent="GtkBox">
+    <property name="name">choose_dir_page</property>
+    <property name="halign">3</property>
+    <property name="valign">3</property>
+    <property name="orientation">1</property>
+    <property name="spacing">30</property>
+    <property name="margin-start">20</property>
+    <property name="margin-end">20</property>
+    <child>
+      <object class="GtkImage">
+        <property name="icon-name">com.devhypercoder.audiolang</property>
+        <property name="icon-size">2</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="label">Choose a directory with audio files whose names are the words.
+Take a look at the &lt;a href="https://lingualibre.org/LanguagesGallery/"&gt;LinguaLibre language gallery&lt;/a&gt; to download some</property>
+        <property name="use-markup">true</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton">
+        <property name="label">Choose directory</property>
+        <signal name="clicked" handler="show_dir_chooser"/>
+      </object>
+    </child>
+  </template>
+</interface>

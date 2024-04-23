@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=audiolang
+Exec=audiolang
+Icon=com.devhypercoder.audiolang
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

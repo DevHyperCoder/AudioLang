@@ -1,0 +1,6 @@
+data/com.devhypercoder.audiolang.desktop.in
+data/com.devhypercoder.audiolang.metainfo.xml.in
+data/com.devhypercoder.audiolang.gschema.xml
+src/main.py
+src/window.ui
+src/choose_dir.ui
