@@ -1,0 +1,88 @@
+using Gtk 4.0;
+
+template $FeedbackWindow: ApplicationWindow {
+  default-width: 800;
+  default-height: 600;
+  title: 'AudioLang Feedback';
+
+  child: Box {
+    margin-top: 30;
+    margin-bottom: 30;
+    margin-start: 30;
+    margin-end: 30;
+    orientation: vertical;
+    spacing: 20;
+
+    Label {
+      label: 'Something wrong with the app ? Let the devs know your feedback';
+    }
+
+    Box {
+      spacing: 10;
+      orientation: vertical;
+
+      Label {
+        label: 'Title';
+        halign: start;
+      }
+
+      Entry title_entry {
+        placeholder-text: 'Brief explanation of the issue';
+      }
+    }
+
+    Box {
+      spacing: 10;
+      orientation: vertical;
+
+      Label {
+        label: 'Description';
+        halign: start;
+      }
+
+      ScrolledWindow {
+        height-request: 180;
+
+        TextView descr_text_view {
+          editable: true;
+        }
+      }
+    }
+
+    Box {
+      orientation: horizontal;
+
+      styles [
+        "linked",
+      ]
+
+      hexpand: true;
+
+      Button cancel_btn {
+        clicked => $on_cancel();
+        label: 'Cancel';
+        hexpand: true;
+      }
+
+      Button submit_btn {
+        clicked => $on_submit();
+        label: 'Submit';
+        hexpand: true;
+      }
+    }
+  };
+}
+
+menu menu_app {
+  section {
+    item {
+      label: _('Keyboard Shortcuts');
+      action: 'app.shortcuts';
+    }
+
+    item {
+      label: _('About My App');
+      action: 'app.about';
+    }
+  }
+}

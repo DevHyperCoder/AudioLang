@@ -1,0 +1,52 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WordPreview: Box {
+  Adw.ToastOverlay toast_overlay {
+    child: Box {
+      Button prev_btn {
+        child: Image {
+          icon-name: 'go-previous-symbolic';
+        };
+
+        clicked => $prev_click();
+      }
+
+      Box {
+        orientation: vertical;
+        halign: center;
+        valign: center;
+        hexpand: true;
+
+        Label word_label {
+          label: 'Word';
+          margin-bottom: 30;
+
+          styles [
+            "title-1",
+          ]
+        }
+
+        Box {
+          halign: center;
+
+          Button play_btn {
+            child: Image {
+              icon-name: 'media-playback-start-symbolic';
+            };
+
+            clicked => $play_handler();
+          }
+        }
+      }
+
+      Button next_btn {
+        child: Image {
+          icon-name: 'go-next-symbolic';
+        };
+
+        clicked => $next_click();
+      }
+    };
+  }
+}

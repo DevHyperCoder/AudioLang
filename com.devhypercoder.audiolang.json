@@ -25,6 +25,7 @@
     ],
     "modules" : [
 	"python3-requests.json",
+	"blueprint-compiler.json",
         {
             "name" : "audiolang",
             "builddir" : true,

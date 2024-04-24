@@ -6,7 +6,7 @@ from gi.repository.Gio import Task
 import requests
 
 
-@Gtk.Template(resource_path="/com/devhypercoder/audiolang/feedback_window.ui")
+@Gtk.Template(resource_path="/com/devhypercoder/audiolang/ui/feedback_window.ui")
 class FeedbackWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "FeedbackWindow"
 

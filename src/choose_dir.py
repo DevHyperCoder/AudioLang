@@ -9,7 +9,7 @@ from gi.repository.GObject import (
 from gi.repository.Gio import Task
 
 
-@Gtk.Template(resource_path="/com/devhypercoder/audiolang/choose_dir.ui")
+@Gtk.Template(resource_path="/com/devhypercoder/audiolang/ui/choose_dir.ui")
 class ChooseDirPage(Gtk.Box):
     __gtype_name__ = "ChooseDirPage"
 

@@ -1,0 +1,84 @@
+using Gtk 4.0;
+
+template $MainWindow: ApplicationWindow {
+  default-width: 800;
+  default-height: 800;
+
+  titlebar: HeaderBar {
+    title-widget: Label {
+      label: '<b>AudioLang</b>';
+      use-markup: true;
+    };
+
+    [start]
+    Button back_btn {
+      label: 'Back';
+      clicked => $on_back_btn_click();
+    }
+
+    [end]
+    Button {
+      child: Image {
+        icon-name: 'bug-symbolic';
+      };
+
+      tooltip-text: 'Send feedback / bug report';
+      clicked => $open_feedback_window();
+    }
+
+    [end]
+    Button {
+      child: Image {
+        icon-name: 'help-about-symbolic';
+      };
+
+      tooltip-text: 'About AudioLang';
+      clicked => $open_about_dialog();
+    }
+  };
+
+  child: Stack view_stack {
+    transition-type: slide_up_down;
+
+    StackPage preview_or_guess_box {
+      name: 'preview_or_guess_box';
+
+      child: Box {
+        halign: center;
+        valign: center;
+        orientation: horizontal;
+        spacing: 30;
+        margin-start: 20;
+        margin-end: 20;
+
+        Box {
+          orientation: vertical;
+          spacing: 10;
+
+          Label {
+            label: 'Listen to audio and see the spellings';
+          }
+
+          Button preview_btn {
+            label: 'Preview';
+            clicked => $on_preview_btn_click();
+          }
+        }
+
+        Box {
+          orientation: vertical;
+          spacing: 10;
+
+          Label {
+            label: 'Listen to audio and guess the spellings';
+          }
+
+          Button guess_btn {
+            label: 'Guess';
+            clicked => $on_guess_btn_click();
+          }
+        }
+      };
+    }
+  };
+}

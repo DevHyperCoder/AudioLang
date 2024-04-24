@@ -1,0 +1,26 @@
+using Gtk 4.0;
+
+template $ChooseDirPage: Box {
+  name: 'choose_dir_page';
+  halign: center;
+  valign: center;
+  orientation: vertical;
+  spacing: 30;
+  margin-start: 20;
+  margin-end: 20;
+
+  Image {
+    icon-name: 'com.devhypercoder.audiolang';
+    icon-size: large;
+  }
+
+  Label {
+    label: 'Choose a directory with audio files whose names are the words.\nTake a look at the <a href="https://lingualibre.org/LanguagesGallery/">LinguaLibre language gallery</a> to download some';
+    use-markup: true;
+  }
+
+  Button {
+    label: 'Choose directory';
+    clicked => $show_dir_chooser();
+  }
+}

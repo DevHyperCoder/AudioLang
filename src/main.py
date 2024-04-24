@@ -15,7 +15,7 @@ from .feedback_window import FeedbackWindow
 from typing import cast
 
 
-@Gtk.Template(resource_path="/com/devhypercoder/audiolang/window.ui")
+@Gtk.Template(resource_path="/com/devhypercoder/audiolang/ui/window.ui")
 class MainWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "MainWindow"
 

@@ -4,7 +4,7 @@ from gi.repository import Adw, Gtk
 import os
 
 
-@Gtk.Template(resource_path="/com/devhypercoder/audiolang/word_preview.ui")
+@Gtk.Template(resource_path="/com/devhypercoder/audiolang/ui/word_preview.ui")
 class WordPreview(Gtk.Box):
     __gtype_name__ = "WordPreview"
 

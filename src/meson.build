@@ -2,11 +2,23 @@ pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
 moduledir = pkgdatadir / 'audiolang'
 gnome = import('gnome')
 
+blueprints = custom_target('blueprints',
+  input: files(
+    'ui' / 'window.blp',
+    'ui' / 'choose_dir.blp',
+    'ui' / 'word_preview.blp',
+    'ui' / 'feedback_window.blp',
+  ),
+  output: '.',
+  command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
+)
+
 gnome.compile_resources('audiolang',
   'audiolang.gresource.xml',
   gresource_bundle: true,
   install: true,
   install_dir: pkgdatadir,
+  dependencies: blueprints,
 )
 
 python = import('python')
