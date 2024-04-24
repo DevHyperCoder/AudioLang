@@ -6,7 +6,7 @@ import sys
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from gi.repository import Gtk, Adw, GLib
+from gi.repository import Gtk, Adw, GLib, Gdk
 
 from .choose_dir import ChooseDirPage
 from .word_preview import WordPreview
@@ -24,6 +24,11 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def __init__(self, path, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        # Loading icon 
+        theme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default())
+        theme.add_resource_path("/com/devhypercoder/audiolang/ui/icons/")
+
         self.path = path
         self.words = []
 
