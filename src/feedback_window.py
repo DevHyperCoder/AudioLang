@@ -11,7 +11,9 @@ class FeedbackWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "FeedbackWindow"
 
     title_entry = cast(Gtk.Entry, Gtk.Template.Child("title_entry"))  # type:ignore
-    descr_text_view = cast(Gtk.TextView, Gtk.Template.Child("descr_text_view"))  # type:ignore
+    descr_text_view = cast(
+        Gtk.TextView, Gtk.Template.Child("descr_text_view")
+    )  # type:ignore
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

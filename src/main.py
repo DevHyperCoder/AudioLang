@@ -25,7 +25,7 @@ class MainWindow(Gtk.ApplicationWindow):
     def __init__(self, path, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Loading icon 
+        # Loading icon
         theme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default())
         theme.add_resource_path("/com/devhypercoder/audiolang/ui/icons/")
 
