@@ -1,6 +1,5 @@
 from typing import cast
-from gi.repository import Gtk, Adw
-from gi.repository.GObject import TYPE_OBJECT, TYPE_BOOLEAN, SignalFlags, signal_new
+from gi.repository import Gtk
 from gi.repository.Gio import Task
 
 import requests
@@ -11,16 +10,14 @@ class FeedbackWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "FeedbackWindow"
 
     title_entry = cast(Gtk.Entry, Gtk.Template.Child("title_entry"))  # type:ignore
-    descr_text_view = cast(
-        Gtk.TextView, Gtk.Template.Child("descr_text_view")
-    )  # type:ignore
+    # fmt:skip
+    descr_text_view = cast( Gtk.TextView, Gtk.Template.Child("descr_text_view"))  # type:ignore
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
     @Gtk.Template.Callback()
     def on_cancel(self, _: Gtk.Button):
-        print("cancel")
         self.close()
 
     @Gtk.Template.Callback()
@@ -53,4 +50,4 @@ class FeedbackWindow(Gtk.ApplicationWindow):
         self.close()
 
     def err_finish(self, _dia: Gtk.AlertDialog, _task: Task):
-        print("err")
+        pass

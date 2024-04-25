@@ -25,6 +25,7 @@
     ],
     "modules" : [
 	"python3-requests.json",
+	"python3-fsrs.json",
 	"blueprint-compiler.json",
         {
             "name" : "audiolang",

@@ -1,0 +1,64 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $WordGuess: Box {
+  Adw.ToastOverlay toast_overlay {
+    child: Box {
+      Button prev_btn {
+        child: Image {
+          icon-name: 'go-previous-symbolic';
+        };
+
+        clicked => $prev_click();
+      }
+
+      Box {
+        orientation: vertical;
+        halign: center;
+        valign: center;
+        hexpand: true;
+
+        Box {
+          halign: center;
+
+          Button play_btn {
+            child: Image {
+              icon-name: 'media-playback-start-symbolic';
+            };
+
+            clicked => $play_handler();
+          }
+        }
+
+        Entry {
+          margin-top: 15;
+          placeholder-text: 'Your guess';
+          activate => $on_guess();
+        }
+
+        Label word_progress_label {
+          margin-top: 10;
+          label: '1/4';
+        }
+
+        ProgressBar word_progress_bar {
+          fraction: 0.25;
+          tooltip-text: '1/4 (25%)';
+        }
+
+        LinkButton {
+          label: 'Show answer';
+          clicked => $show_word();
+        }
+      }
+
+      Button next_btn {
+        child: Image {
+          icon-name: 'go-next-symbolic';
+        };
+
+        clicked => $next_click();
+      }
+    };
+  }
+}

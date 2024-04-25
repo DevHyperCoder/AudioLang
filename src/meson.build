@@ -7,6 +7,7 @@ blueprints = custom_target('blueprints',
     'ui' / 'window.blp',
     'ui' / 'choose_dir.blp',
     'ui' / 'word_preview.blp',
+    'ui' / 'word_guess.blp',
     'ui' / 'feedback_window.blp',
   ),
   output: '.',
@@ -43,7 +44,10 @@ audiolang_sources = [
   'main.py',
   'choose_dir.py',
   'word_preview.py',
-  'feedback_window.py'
+  'word_guess.py',
+  'feedback_window.py',
+  'db.py',
+  'utils.py',
 ]
 
 install_data(audiolang_sources, install_dir: moduledir)

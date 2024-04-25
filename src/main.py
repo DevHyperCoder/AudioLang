@@ -6,10 +6,11 @@ import sys
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from gi.repository import Gtk, Adw, GLib, Gdk
+from gi.repository import Gtk, Adw, Gdk
 
 from .choose_dir import ChooseDirPage
 from .word_preview import WordPreview
+from .word_guess import WordGuess
 from .feedback_window import FeedbackWindow
 
 from typing import cast
@@ -26,7 +27,7 @@ class MainWindow(Gtk.ApplicationWindow):
         super().__init__(*args, **kwargs)
 
         # Loading icon
-        theme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default())
+        theme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default())  # type:ignore
         theme.add_resource_path("/com/devhypercoder/audiolang/ui/icons/")
 
         self.path = path
@@ -42,6 +43,9 @@ class MainWindow(Gtk.ApplicationWindow):
         self.word_preview = WordPreview(self.path, self.words)
         self.view_stack.add_named(self.word_preview, "word_preview")
 
+        self.word_guess = WordGuess(self.path)
+        self.view_stack.add_named(self.word_guess, "word_guess")
+
         if path is not None:
             self.view_stack.set_visible_child_name("preview_or_guess_box")
             self.back_btn.set_visible(True)
@@ -51,7 +55,6 @@ class MainWindow(Gtk.ApplicationWindow):
 
     @Gtk.Template.Callback()
     def on_back_btn_click(self, _):
-        print("back")
         self.view_stack.set_visible_child_name("choose_dir")
         self.back_btn.set_visible(False)
 
@@ -61,7 +64,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     @Gtk.Template.Callback()
     def on_guess_btn_click(self, _):
-        pass
+        self.view_stack.set_visible_child_name("word_guess")
 
     @Gtk.Template.Callback()
     def open_feedback_window(self, _):
@@ -85,7 +88,7 @@ class MainWindow(Gtk.ApplicationWindow):
             self.words.append((path.split(".")[0], path))
 
     def on_dir_choose(self, _, dir_path):
-        print(f"{dir_path=}")
+        print(f"Loading {dir_path=}")
         self.path = dir_path
         self.parse_dir(dir_path)
         if len(self.words) <= 0:
@@ -97,6 +100,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.word_preview.set_base_path(self.path)
         self.word_preview.set_words(self.words)
+        self.word_guess.set_base_path(self.path)
         self.view_stack.set_visible_child_name("preview_or_guess_box")
         self.back_btn.set_visible(True)
 
@@ -112,6 +116,6 @@ class AudioLangApp(Adw.Application):
         self.win.present()
 
 
-def main(version):
+def main(_version):
     app = AudioLangApp(path=None, application_id="com.devhypercoder.audiolang")
     app.run(sys.argv)
