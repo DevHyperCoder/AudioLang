@@ -116,12 +116,20 @@ class WordGuess(Gtk.Box):
         result = self.f.repeat(wc.card, datetime.utcnow())
 
         if guess == wc.fname:
-            new_wcard = result[Rating.Good].card
-            self.toast_overlay.add_toast(Adw.Toast(title="CORRECT"))
+            rating = Rating.Good
+            toast_title_lbl = "CORRECT!"
+            toast_title_css = "success"
         else:
-            new_wcard = result[Rating.Again].card
-            self.toast_overlay.add_toast(Adw.Toast(title="INCORRECT"))
+            rating = Rating.Again
+            toast_title_lbl = "INCORRECT!"
+            toast_title_css = "error"
 
+        toast_lbl = Gtk.Label(
+            label=toast_title_lbl, use_markup=True, css_classes=[toast_title_css]
+        )
+        self.toast_overlay.add_toast(Adw.Toast(custom_title=toast_lbl))
+
+        new_wcard = result[rating].card
         update_card(self.get_con(), wc.id, new_wcard)
         self.word_cards[self.current_word].card = new_wcard
 
