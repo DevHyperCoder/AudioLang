@@ -6,7 +6,7 @@ import sys
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from gi.repository import Gtk, Adw, Gdk
+from gi.repository import Gio, Gtk, Adw, Gdk
 
 from .choose_dir import ChooseDirPage
 from .word_preview import WordPreview
@@ -26,9 +26,15 @@ class MainWindow(Gtk.ApplicationWindow):
     def __init__(self, path, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Loading icon
-        theme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default())  # type:ignore
-        theme.add_resource_path("/com/devhypercoder/audiolang/ui/icons/")
+        about_action = Gio.SimpleAction(name="about")
+        feedback_action = Gio.SimpleAction(name="feedback")
+
+        self.add_action(about_action)
+        self.add_action(feedback_action)
+
+        about_action.connect("activate", self.open_about_dialog)
+        feedback_action.connect("activate", self.open_feedback_window)
+
 
         self.path = path
         self.words = []
@@ -66,13 +72,11 @@ class MainWindow(Gtk.ApplicationWindow):
     def on_guess_btn_click(self, _):
         self.view_stack.set_visible_child_name("word_guess")
 
-    @Gtk.Template.Callback()
-    def open_feedback_window(self, _):
+    def open_feedback_window(self,_action, _):
         win = FeedbackWindow()
         win.show()
 
-    @Gtk.Template.Callback()
-    def open_about_dialog(self, _):
+    def open_about_dialog(self,_action, _):
         dia = Gtk.AboutDialog()
         dia.set_program_name("AudioLang")
         dia.set_authors(["DevHyperCoder <devan@devhypercoder.com>"])

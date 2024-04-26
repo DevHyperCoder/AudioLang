@@ -6,7 +6,5 @@
     <file preprocess="xml-stripblanks">ui/word_preview.ui</file>
     <file preprocess="xml-stripblanks">ui/word_guess.ui</file>
     <file preprocess="xml-stripblanks">ui/feedback_window.ui</file>
-
-    <file preprocess="xml-stripblanks">ui/icons/bug-symbolic.svg</file>
   </gresource>
 </gresources>

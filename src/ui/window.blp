@@ -15,26 +15,15 @@ template $MainWindow: ApplicationWindow {
       label: 'Back';
       clicked => $on_back_btn_click();
     }
-
+    
     [end]
-    Button {
-      child: Image {
-	resource: "/com/devhypercoder/audiolang/ui/icons/bug-symbolic.svg";
-      };
-
-      tooltip-text: 'Send feedback / bug report';
-      clicked => $open_feedback_window();
-    }
-
-    [end]
-    Button {
-      child: Image {
-        icon-name: 'help-about-symbolic';
-      };
-
-      tooltip-text: 'About AudioLang';
-      clicked => $open_about_dialog();
-    }
+    MenuButton primary {
+        halign: center;
+        icon-name: "open-menu-symbolic";
+        menu-model: primary_button_menu;
+        primary: true;
+        // May not work in Previewer
+      }
   };
 
   child: Stack view_stack {
@@ -81,4 +70,18 @@ template $MainWindow: ApplicationWindow {
       };
     }
   };
+}
+
+menu primary_button_menu {
+  section {
+    item {
+      label: _("Feedback");
+      action: "win.feedback";
+    }
+
+    item {
+      label: _("About AudioLang");
+      action: "win.about";
+    }
+  }
 }
