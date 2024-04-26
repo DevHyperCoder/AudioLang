@@ -1,6 +1,12 @@
-# audiolang
+<h1 align="center">AudioLang</h1>
 
-Listen to words and hear how they are pronounced
+<p align="center">
+  <img src="./data/icons/hicolor/scalable/apps/com.devhypercoder.audiolang.svg" alt="audiolang-logo" width="120px" height="120px"/>
+  <br>
+  <em>Listen to words and hear how they are pronounced.
+</em>
+  <br>
+</p>
 
 # screenshots
 
