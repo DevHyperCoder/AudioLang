@@ -35,7 +35,6 @@ class MainWindow(Gtk.ApplicationWindow):
         about_action.connect("activate", self.open_about_dialog)
         feedback_action.connect("activate", self.open_feedback_window)
 
-
         self.path = path
         self.words = []
 
@@ -72,11 +71,11 @@ class MainWindow(Gtk.ApplicationWindow):
     def on_guess_btn_click(self, _):
         self.view_stack.set_visible_child_name("word_guess")
 
-    def open_feedback_window(self,_action, _):
+    def open_feedback_window(self, _action, _):
         win = FeedbackWindow()
         win.show()
 
-    def open_about_dialog(self,_action, _):
+    def open_about_dialog(self, _action, _):
         dia = Gtk.AboutDialog()
         dia.set_program_name("AudioLang")
         dia.set_authors(["DevHyperCoder <devan@devhypercoder.com>"])
